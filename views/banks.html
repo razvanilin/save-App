@@ -1,2 +1,83 @@
-<h1>The answer is:</h1>
-<p>{{ parsedData.accounts[0].id }}</p>
+{% extends "body.html" %}
+
+{% block content %}
+
+
+<div class="wrapper" >
+
+                <div class="container">
+<div class="logo-saveapp"><img src="images/logo.png" alt="SaveApp" height="186" width="200"></div>
+                                                    <h1>Set up your account</h1>
+
+                       <div class="accounts">
+
+
+        <div class="table" align = "right"    font-family: Source Sans Pro, sans-serif;>
+
+            <form action="/getBanks" class="form" method="post"> 
+                <table style="width:70%" >
+
+                  <tr>
+                    <td id ="dropdown" >From</td>
+                    <td><select  class="accselect" id="spending" name="spending">
+                		{% for account in parsedData.accounts %}
+		            		<option value="{{ account.id }}*{{ account.bank_id }}">{{ account.label }}</option>
+		            	{% endfor %}
+                	</select></td>		
+
+                  </tr>
+                  <tr>
+                    <td id ="dropdown">To </td>
+                    <td><select class="accselect" id="saving" name="saving">
+                	{% for account in parsedData.accounts %}
+              			<option value="{{ account.id }}*{{ account.bank_id }}">{{ account.label }}</option>
+                	{% endfor %}
+            		</select></td>		
+                    </tr>
+                    <td>Low </td>
+                        <td><input type="checkbox" name="vehicle" value="Bike"></td>
+                    </tr>
+                             <tr>
+                    <td>Middle </td>
+                        <td><input type="checkbox" name="vehicle" value="Bike"></td>
+                    </tr>  
+                             
+                     <tr>
+                    <td>Middle </td>
+                        <td><input type="checkbox" name="vehicle" value="Bike"></td>
+                    </tr>  
+                         
+                  </tr>
+
+                    </tr>
+
+                </table>
+            
+
+                <button type="submit" id="dashboard">Start / Stop</button>
+            </form>
+
+                    </div>
+
+
+        </div>
+          </div>
+        </body>
+
+        <ul class="bg-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+
+
+{% endblock %}

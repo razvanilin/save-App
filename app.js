@@ -11,9 +11,11 @@ var users = require('./routes/users');
 var callback = require('./routes/callback');
 var bank = require('./routes/bank');
 var signedin = require('./routes/signedin');
+var login = require('./routes/login');
 
 var app = express();
 var swig = require('swig');
+var mongoose = require('mongoose');
 
 app.engine('html', swig.renderFile);
 
@@ -44,6 +46,9 @@ app.use('/users', users);
 app.use('/callback', callback);
 app.use('/getBanks', bank);
 app.use('/signed_in', signedin);
+app.use('/login', login);
+
+mongoose.connect('mongodb://localhost/saveApp');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
