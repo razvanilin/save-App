@@ -48,10 +48,11 @@ router.post('/', function(req, res) {
 
 	var User = mongoose.model("User", userModel);
 	var user;
-	User.find({user_id: spendingAcc}, function(err, post) {
-		if (!err) {
-			console.log(post[0].user_id);
+	//User.find({user_id: spendingAcc}, function(err, post) {
+		//if (!err) {
+			//console.log(post[0].user_id);
 			user = new User({
+				user_id: spendingAcc,
 				spendingAcc: {
 					account_id: spendingAcc,
 					bank_id: spendingBank
@@ -67,7 +68,7 @@ router.post('/', function(req, res) {
 
 			user.save();
 
-			var accId = post[0].user_id;
+			var accId = spendingAcc;
 
 			consumer.get("https://rbs.openbankproject.com/obp/v1.4.0/banks/rbs-rbs-c/accounts/"+accId+"/owner/transactions",
 				req.session.oauthAccessToken,
@@ -90,8 +91,8 @@ router.post('/', function(req, res) {
 			        res.render("status", {amount: amount});
 			    });
 
-		} else {
-			user = new User({
+		//} else {
+			/*user = new User({
 				user_id: spendingAcc,
 				spendingAcc: {
 					account_id: spendingAcc,
@@ -106,10 +107,10 @@ router.post('/', function(req, res) {
 				enabled: true
 			});
 
-			user.save();
-		}
+			user.save();*/
+		//}
 
-	});
+	//});
 
 	//res.send(user);
 });
